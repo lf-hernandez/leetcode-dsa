@@ -1,29 +1,38 @@
 #include <iostream>
-using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    bool isPalindrome(int x)
-    {
-        string tempString = to_string(x);
-        char const *num_char = tempString.c_str();
+    bool isPalindrome(int x) {
+        std::string numStr = std::to_string(x);
+        const char *numChars = numStr.c_str();
 
-        int cursor1 = 0;
-        int cursor2 = tempString.length() - 1;
+        int leftIndex = 0;
+        int rightIndex = numStr.length() - 1;
 
-        while (cursor1 < cursor2)
-        {
-            if (num_char[cursor1] != num_char[cursor2])
-            {
+        while (leftIndex < rightIndex) {
+            if (numChars[leftIndex] != numChars[rightIndex]){
                 return false;
             }
-            cursor1++;
-            cursor2--;
+            leftIndex++;
+            rightIndex--;
         }
 
         return true;
     }
+
+	bool optimizedIsPalindrome(int x) {
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int reversedHalf = 0;
+        while (x > reversedHalf) {
+            reversedHalf = reversedHalf * 10 + x % 10;
+            x /= 10;
+        }
+
+        return x == reversedHalf || x == reversedHalf / 10;
+	}
 };
 
 int main()
@@ -34,9 +43,9 @@ int main()
     int test_case_2 = -121;
     int test_case_3 = 10;
 
-    cout << "Test Case 1 (121): " << (sol.isPalindrome(test_case_1) ? "True" : "False") << endl;
-    cout << "Test Case 2 (-121): " << (sol.isPalindrome(test_case_2) ? "True" : "False") << endl;
-    cout << "Test Case 3 (10): " << (sol.isPalindrome(test_case_3) ? "True" : "False") << endl;
+    std::cout << "Test Case 1 (121): " << (sol.optimizedIsPalindrome(test_case_1) ? "True" : "False") << std::endl;
+    std::cout << "Test Case 2 (-121): " << (sol.isPalindrome(test_case_2) ? "True" : "False") << std::endl;
+    std::cout << "Test Case 3 (10): " << (sol.isPalindrome(test_case_3) ? "True" : "False") << std::endl;
 
     return 0;
 }

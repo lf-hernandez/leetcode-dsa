@@ -1,10 +1,9 @@
 #include <cstdio>
 #include <vector>
-using namespace std;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    std::vector<int> twoSum(std::vector<int>& nums, int target) {
         for (size_t head = 0; head < nums.size(); head++)
             for (size_t tail = head + 1; tail < nums.size(); tail++) {
                 if (nums[head] + nums[tail] == target) {
@@ -14,7 +13,7 @@ public:
         return {};
     }
 
-    void printResult(vector<int>& input, vector<int>& result, int target) {
+    void printResult(std::vector<int>& input, std::vector<int>& result, int target) {
         printf("Input Array: ");
         for (int num : input) {
             printf("%d ", num);
@@ -32,13 +31,13 @@ public:
 
 int main() {
     Solution sln;
-    vector<int> test_case_1 = { 2, 7, 11, 15 };
-    vector<int> test_case_2 = { 3, 2, 4 };
-    vector<int> test_case_3 = { 3, 3 };
+    std::vector<int> test_case_1 = { 2, 7, 11, 15 };
+    std::vector<int> test_case_2 = { 3, 2, 4 };
+    std::vector<int> test_case_3 = { 3, 3 };
 
-    vector<int> test_results_1 = sln.twoSum(test_case_1, 9);
-    vector<int> test_results_2 = sln.twoSum(test_case_2, 6);
-    vector<int> test_results_3 = sln.twoSum(test_case_3, 6);
+    std::vector<int> test_results_1 = sln.twoSum(test_case_1, 9);
+    std::vector<int> test_results_2 = sln.twoSum(test_case_2, 6);
+    std::vector<int> test_results_3 = sln.twoSum(test_case_3, 6);
     
     sln.printResult(test_case_1, test_results_1, 9);
     sln.printResult(test_case_2, test_results_2, 6);
